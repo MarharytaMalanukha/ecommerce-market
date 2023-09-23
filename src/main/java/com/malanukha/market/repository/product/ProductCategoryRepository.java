@@ -12,4 +12,5 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
     List<String> getName();
 
     ProductCategory findFirstByName(String name);
+    List<ProductCategory> findByMainProductCategoryIsNull();
 }

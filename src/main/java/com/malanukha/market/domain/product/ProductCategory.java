@@ -26,7 +26,7 @@ public class ProductCategory {
 
     @ManyToOne
     @JoinColumn(name = "main_product_category_id")
-    private MainProductCategory mainProductCategory;
+    private ProductCategory mainProductCategory;
 
     @Column(updatable = false)
     @CreationTimestamp
@@ -37,4 +37,7 @@ public class ProductCategory {
 
     @OneToMany(mappedBy = "productCategory")
     private List<Product> products;
+
+    @OneToMany(mappedBy = "mainProductCategory")
+    private List<ProductCategory> productCategories;
 }

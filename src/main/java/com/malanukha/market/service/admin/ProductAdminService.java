@@ -1,6 +1,7 @@
 package com.malanukha.market.service.admin;
 
 import com.malanukha.market.domain.product.Product;
+import com.malanukha.market.domain.product.ProductDiscount;
 import com.malanukha.market.dto.product.ProductDto;
 import com.malanukha.market.repository.product.ProductCategoryRepository;
 import com.malanukha.market.repository.product.ProductDiscountRepository;
@@ -23,6 +24,10 @@ public class ProductAdminService extends BaseAdminService<ProductDto, Product> {
 
     @Override
     protected Product convertFromDto(ProductDto dto) {
+        ProductDiscount productDiscount = null;
+        if (!dto.getDiscount().isEmpty()) {
+            productDiscount = productDiscountRepository.findFirstByName(dto.getDiscount());
+        }
         return Product.builder()
                 .id(dto.getId())
                 .sku(dto.getSku())
@@ -32,12 +37,22 @@ public class ProductAdminService extends BaseAdminService<ProductDto, Product> {
                 .quantity(dto.getQuantity())
                 .priceEuro(dto.getPriceEuro())
                 .productCategory(productCategoryRepository.findFirstByName(dto.getCategory()))
-                .productDiscount(productDiscountRepository.findFirstByName(dto.getDiscount()))
+                .productDiscount(productDiscount)
                 .build();
     }
 
     @Override
     protected ProductDto convertToDto(Product entity) {
-        return new ProductDto(entity);
+        return ProductDto.builder()
+                .id(entity.getId())
+                .sku(entity.getSku())
+                .name(entity.getName())
+                .description(entity.getDescription())
+                .imageUrl(entity.getImageUrl())
+                .priceEuro(entity.getPriceEuro())
+                .quantity(entity.getQuantity())
+                .category(entity.getProductCategory().getName())
+                .discount(entity.getProductDiscount().getName())
+                .build();
     }
 }

@@ -1,18 +1,11 @@
-CREATE TABLE main_product_categories (
-    id bigserial primary key,
-    name varchar(30) unique not null,
-    created_at timestamp not null,
-    modified_at timestamp not null
-);
-
 CREATE TABLE product_categories (
     id bigserial primary key,
     name varchar(30) unique not null,
     description text,
-    main_product_category_id bigint not null,
+    main_product_category_id bigint,
     created_at timestamp not null,
     modified_at timestamp not null,
-    FOREIGN KEY (main_product_category_id) REFERENCES main_product_categories(id)
+    FOREIGN KEY (main_product_category_id) REFERENCES product_categories(id)
 );
 
 CREATE TABLE product_discounts (

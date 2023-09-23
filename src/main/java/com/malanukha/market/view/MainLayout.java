@@ -1,7 +1,7 @@
 package com.malanukha.market.view;
 
 
-import com.malanukha.market.domain.product.MainProductCategory;
+import com.malanukha.market.domain.product.ProductCategory;
 import com.malanukha.market.security.AuthenticatedUser;
 import com.malanukha.market.service.product.ProductCategoryService;
 import com.malanukha.market.view.admin.AdminProductsView;
@@ -32,7 +32,7 @@ public class MainLayout extends BaseApplicationLayout {
 
     @Override
     protected MenuItemInfo[] createMenuItems() {
-        List<MainProductCategory> categories = productCategoryService.getMainProductCategories();
+        List<ProductCategory> categories = productCategoryService.getMainProductCategories();
         if (categories.isEmpty())
             return new MenuItemInfo[] { new MenuItemInfo("Empty View", LineAwesomeIcon.TH_LIST_SOLID.create(), EmptyView.class) };
         return categories.stream()

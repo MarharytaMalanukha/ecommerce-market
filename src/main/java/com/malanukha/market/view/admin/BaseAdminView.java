@@ -136,6 +136,9 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
         for (Pair<TextField, Optional<Converter>> pair : listOfGridColumns) {
             formLayout.add(pair.getValue0());
         }
+        for (Select<String> select : listOfSelectColumns) {
+            formLayout.add(select);
+        }
 
         editorDiv.add(formLayout);
         createButtonLayout(editorLayoutDiv);
@@ -165,7 +168,7 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
                 binder.forField(field).withConverter(converter.get()).bind(field.getLabel());
             }
         });
-       // listOfSelectColumns.forEach(stringSelect -> binder.forField(stringSelect).);
+        listOfSelectColumns.forEach(stringSelect -> binder.forField(stringSelect).bind(stringSelect.getLabel()));
 
         cancel.addClickListener(e -> {
             clearForm();

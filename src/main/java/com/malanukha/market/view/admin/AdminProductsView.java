@@ -66,7 +66,7 @@ public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
     protected List<Select<String>> getSelectColumns() {
         List<String> categoriesNames = productCategoryService.getProductCategoryNames();
         List<String> discountsNames = productDiscountService.getProductDiscountNames();
-        if (categoriesNames.isEmpty() || discountsNames.isEmpty()) {
+        if (categoriesNames.isEmpty()) {
             editorDataIsConfigured = false;
         }
 
@@ -77,6 +77,7 @@ public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
         Select<String> discountsSelect = new Select<>();
         discountsSelect.setLabel("discount");
         discountsSelect.setItems(discountsNames);
+        discountsSelect.setEmptySelectionAllowed(true);
 
         return List.of(categoriesSelect, discountsSelect);
     }
