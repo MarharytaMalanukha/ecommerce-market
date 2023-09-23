@@ -1,7 +1,8 @@
-package com.malanukha.market.view.layout;
+package com.malanukha.market.view;
 
 import com.malanukha.market.domain.user.User;
 import com.malanukha.market.security.AuthenticatedUser;
+import com.malanukha.market.service.product.ProductCategoryService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -22,10 +23,12 @@ public abstract class BaseApplicationLayout extends AppLayout {
 
     protected AuthenticatedUser authenticatedUser;
     protected AccessAnnotationChecker accessChecker;
+    protected ProductCategoryService productCategoryService;
 
-    public BaseApplicationLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
+    public BaseApplicationLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, ProductCategoryService productCategoryService) {
         this.authenticatedUser = authenticatedUser;
         this.accessChecker = accessChecker;
+        this.productCategoryService = productCategoryService;
 
         addToNavbar(createHeaderContent());
     }

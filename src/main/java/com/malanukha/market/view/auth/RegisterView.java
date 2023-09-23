@@ -1,7 +1,7 @@
-package com.malanukha.market.view.register;
+package com.malanukha.market.view.auth;
 
 import com.malanukha.market.service.user.UserService;
-import com.malanukha.market.view.login.LoginView;
+import com.malanukha.market.view.auth.LoginView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;

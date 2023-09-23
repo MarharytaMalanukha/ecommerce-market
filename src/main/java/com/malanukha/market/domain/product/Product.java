@@ -25,16 +25,13 @@ public class Product {
     private String name;
     private String description;
     private String imageUrl;
+    private Integer quantity;
 
     private BigDecimal priceEuro;
 
     @ManyToOne
     @JoinColumn(name = "product_category_id")
     private ProductCategory productCategory;
-
-    @ManyToOne
-    @JoinColumn(name = "product_inventory_id")
-    private ProductInventory productInventory;
 
     @ManyToOne
     @JoinColumn(name = "product_discount_id")

@@ -35,14 +35,14 @@ import java.util.List;
 @Route(value = "users", layout = AdminLayout.class)
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
-public class UsersView extends Div {
+public class AdminUsersView extends Div {
 
     private Grid<User> grid;
 
     private final Filters filters;
     private final UserService userService;
 
-    public UsersView(UserService userService) {
+    public AdminUsersView(UserService userService) {
         this.userService = userService;
         setSizeFull();
         addClassNames("users-view");

@@ -1,7 +1,6 @@
-package com.malanukha.market.view.login;
+package com.malanukha.market.view.auth;
 
 import com.malanukha.market.security.AuthenticatedUser;
-import com.malanukha.market.view.register.RegisterView;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
@@ -34,14 +33,12 @@ public class LoginView extends LoginOverlay implements BeforeEnterObserver {
 
         setForgotPasswordButtonVisible(true);
         addForgotPasswordListener(forgotPasswordEvent -> UI.getCurrent().navigate(RegisterView.class));
-        //addLoginListener(loginEvent -> )
         setOpened(true);
     }
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         if (authenticatedUser.get().isPresent()) {
-            // Already logged in
             setOpened(false);
             event.forwardTo("");
         }

@@ -4,10 +4,9 @@ package com.malanukha.market.view;
 import com.malanukha.market.domain.product.MainProductCategory;
 import com.malanukha.market.security.AuthenticatedUser;
 import com.malanukha.market.service.product.ProductCategoryService;
-import com.malanukha.market.view.admin.UsersView;
+import com.malanukha.market.view.admin.AdminProductsView;
 import com.malanukha.market.view.category.CategoryView;
 import com.malanukha.market.view.error.EmptyView;
-import com.malanukha.market.view.layout.BaseApplicationLayout;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.UI;
@@ -20,17 +19,14 @@ import java.util.Map;
 
 public class MainLayout extends BaseApplicationLayout {
 
-    private final ProductCategoryService productCategoryService;
-
     public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, ProductCategoryService productCategoryService) {
-        super(authenticatedUser, accessChecker);
-        this.productCategoryService = productCategoryService;
+        super(authenticatedUser, accessChecker, productCategoryService);
     }
 
     @Override
     protected Map<String, ComponentEventListener<ClickEvent<MenuItem>>> createProfileMenuItems() {
         return Map.of("Profile", e -> UI.getCurrent().navigate(EmptyView.class),
-                "Admin Panel", e -> UI.getCurrent().navigate(UsersView.class),
+                "Admin Panel", e -> UI.getCurrent().navigate(AdminProductsView.class),
                 "Sign out",  e -> authenticatedUser.logout());
     }
 

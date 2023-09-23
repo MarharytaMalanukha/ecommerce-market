@@ -20,4 +20,7 @@ public class ProductCategoryService {
         return mainProductCategoryRepository.findAll(Pageable.ofSize(10)).toList();
     }
 
+    public List<String> getProductCategoryNames() {
+        return productCategoryRepository.getName();
+    }
 }

@@ -1,6 +1,6 @@
 package com.malanukha.market.security;
 
-import com.malanukha.market.view.login.LoginView;
+import com.malanukha.market.view.auth.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
