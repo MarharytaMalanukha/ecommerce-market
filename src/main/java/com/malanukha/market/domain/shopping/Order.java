@@ -27,7 +27,7 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id")
     private OrderPayment orderPayment;
     private BigDecimal total;

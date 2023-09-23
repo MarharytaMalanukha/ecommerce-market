@@ -2,6 +2,7 @@ package com.malanukha.market.view;
 
 import com.malanukha.market.security.AuthenticatedUser;
 import com.malanukha.market.service.product.ProductCategoryService;
+import com.malanukha.market.view.admin.AdminOrdersView;
 import com.malanukha.market.view.admin.AdminProductCategoriesView;
 import com.malanukha.market.view.admin.AdminProductDiscountsView;
 import com.malanukha.market.view.admin.AdminProductsView;
@@ -28,11 +29,10 @@ public class AdminLayout extends BaseApplicationLayout {
         return new MenuItemInfo[]{
 
                 //new MenuItemInfo("Users", LineAwesomeIcon.FILTER_SOLID.create(), UsersView.class), //
-
                 new MenuItemInfo("Product Categories", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductCategoriesView.class),
                 new MenuItemInfo("Products", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductsView.class),
                 new MenuItemInfo("Discounts", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductDiscountsView.class),
-                //new MenuItemInfo("Orders", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminOrdersView.class),
+                new MenuItemInfo("Orders", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminOrdersView.class),
               //  new MenuItemInfo("SuperAdmin panel", LineAwesomeIcon.FILE.create(), SuperAdminpanelView.class),
 
         };
