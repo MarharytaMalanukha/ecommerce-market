@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @PageTitle("Discounts")
-@Route(value = "admin/discounts/:sampleEntityID?/:action?(edit)", layout = AdminLayout.class)
+@Route(value = "admin/discounts/:entityID?/:action?(edit)", layout = AdminLayout.class)
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
 public class AdminProductDiscountsView extends BaseAdminView<ProductDiscountDto, ProductDiscount>{

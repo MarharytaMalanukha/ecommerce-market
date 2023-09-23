@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @PageTitle("Categories")
-@Route(value = "admin/categories/:sampleEntityID?/:action?(edit)", layout = AdminLayout.class)
+@Route(value = "admin/categories/:entityID?/:action?(edit)", layout = AdminLayout.class)
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
 public class AdminProductCategoriesView extends BaseAdminView<ProductCategoryDto, ProductCategory> {

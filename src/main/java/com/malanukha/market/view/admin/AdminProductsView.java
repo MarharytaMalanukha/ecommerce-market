@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Optional;
 
 @PageTitle("Products")
-@Route(value = "admin/products/:sampleEntityID?/:action?(edit)", layout = AdminLayout.class)
+@Route(value = "admin/products/:entityID?/:action?(edit)", layout = AdminLayout.class)
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
 public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
