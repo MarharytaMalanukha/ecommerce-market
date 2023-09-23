@@ -3,6 +3,7 @@ package com.malanukha.market.view;
 import com.malanukha.market.security.AuthenticatedUser;
 import com.malanukha.market.service.product.ProductCategoryService;
 import com.malanukha.market.view.admin.AdminProductCategoriesView;
+import com.malanukha.market.view.admin.AdminProductDiscountsView;
 import com.malanukha.market.view.admin.AdminProductsView;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -30,7 +31,7 @@ public class AdminLayout extends BaseApplicationLayout {
 
                 new MenuItemInfo("Product Categories", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductCategoriesView.class),
                 new MenuItemInfo("Products", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductsView.class),
-                //new MenuItemInfo("Discounts", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminDiscountsView.class),
+                new MenuItemInfo("Discounts", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductDiscountsView.class),
                 //new MenuItemInfo("Orders", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminOrdersView.class),
               //  new MenuItemInfo("SuperAdmin panel", LineAwesomeIcon.FILE.create(), SuperAdminpanelView.class),
 

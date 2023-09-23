@@ -59,7 +59,7 @@ public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
                 Pair.with(new TextField("description"), Optional.empty()),
                 Pair.with(new TextField("imageUrl"), Optional.empty()),
                 Pair.with(new TextField("quantity"), Optional.of(new StringToIntegerConverter("must be an integer"))),
-                Pair.with(new TextField("priceEuro"), Optional.of(new StringToBigDecimalConverter("must be a bigDecimal"))));
+                Pair.with(new TextField("priceEuro"), Optional.of(new StringToBigDecimalConverter("must be a BigDecimal"))));
     }
 
     @Override
