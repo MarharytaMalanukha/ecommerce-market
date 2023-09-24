@@ -1,16 +1,17 @@
 package com.malanukha.market.service.admin;
 
+import com.malanukha.market.repository.product.BaseAdminRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Optional;
 
 public abstract class BaseAdminService<T1, T2> {
 
-    protected final JpaRepository<T2, Long> repository;
+    protected final BaseAdminRepository<T2, Long> repository;
 
-    public BaseAdminService(JpaRepository<T2, Long> repository) {
+    public BaseAdminService(BaseAdminRepository<T2, Long> repository) {
         this.repository = repository;
     }
 
@@ -28,6 +29,10 @@ public abstract class BaseAdminService<T1, T2> {
 
     public Page<T1> list(Pageable pageable) {
         return repository.findAll(pageable).map(this::convertToDto);
+    }
+
+    public Page<T1> list(Pageable pageable, Specification<T2> filter) {
+        return repository.findAll(filter, pageable).map(this::convertToDto);
     }
 
     public int count() {

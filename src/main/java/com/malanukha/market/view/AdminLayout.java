@@ -2,10 +2,7 @@ package com.malanukha.market.view;
 
 import com.malanukha.market.security.AuthenticatedUser;
 import com.malanukha.market.service.product.ProductCategoryService;
-import com.malanukha.market.view.admin.AdminOrdersView;
-import com.malanukha.market.view.admin.AdminProductCategoriesView;
-import com.malanukha.market.view.admin.AdminProductDiscountsView;
-import com.malanukha.market.view.admin.AdminProductsView;
+import com.malanukha.market.view.admin.*;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
 import com.vaadin.flow.component.contextmenu.MenuItem;
@@ -27,12 +24,13 @@ public class AdminLayout extends BaseApplicationLayout {
 
     protected MenuItemInfo[] createMenuItems() {
         return new MenuItemInfo[]{
-
-                //new MenuItemInfo("Users", LineAwesomeIcon.FILTER_SOLID.create(), UsersView.class), //
+                //dashboard
+                new MenuItemInfo("Find Users", LineAwesomeIcon.FILTER_SOLID.create(), AdminUsersFilterView.class), //
                 new MenuItemInfo("Product Categories", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductCategoriesView.class),
                 new MenuItemInfo("Products", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductsView.class),
                 new MenuItemInfo("Discounts", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductDiscountsView.class),
                 new MenuItemInfo("Orders", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminOrdersView.class),
+              //  new MenuItemInfo("Order Items", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminOrderItemsFilterView.class)
               //  new MenuItemInfo("SuperAdmin panel", LineAwesomeIcon.FILE.create(), SuperAdminpanelView.class),
 
         };

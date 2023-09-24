@@ -4,7 +4,7 @@ import com.malanukha.market.domain.shopping.Order;
 import com.malanukha.market.domain.shopping.OrderPayment;
 import com.malanukha.market.domain.shopping.OrderPaymentStatus;
 import com.malanukha.market.domain.user.User;
-import com.malanukha.market.dto.product.OrderDto;
+import com.malanukha.market.dto.OrderDto;
 import com.malanukha.market.repository.shopping.OrderRepository;
 import com.malanukha.market.repository.user.UserRepository;
 import org.springframework.stereotype.Service;

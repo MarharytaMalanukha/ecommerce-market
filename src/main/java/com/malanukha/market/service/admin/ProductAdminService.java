@@ -2,7 +2,7 @@ package com.malanukha.market.service.admin;
 
 import com.malanukha.market.domain.product.Product;
 import com.malanukha.market.domain.product.ProductDiscount;
-import com.malanukha.market.dto.product.ProductDto;
+import com.malanukha.market.dto.ProductDto;
 import com.malanukha.market.repository.product.ProductCategoryRepository;
 import com.malanukha.market.repository.product.ProductDiscountRepository;
 import com.malanukha.market.repository.product.ProductRepository;

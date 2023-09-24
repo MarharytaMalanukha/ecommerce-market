@@ -1,4 +1,4 @@
-package com.malanukha.market.dto.product;
+package com.malanukha.market.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

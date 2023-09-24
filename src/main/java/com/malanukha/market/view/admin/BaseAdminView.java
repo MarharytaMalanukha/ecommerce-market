@@ -21,6 +21,7 @@ import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.data.converter.Converter;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
+import com.vaadin.flow.spring.data.VaadinSpringDataHelpers;
 import org.javatuples.Pair;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
@@ -79,7 +80,7 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
         }
 
         grid.setItems(query -> baseAdminService.list(
-                PageRequest.of(query.getPage(), query.getPageSize()))
+                PageRequest.of(query.getPage(), query.getPageSize(), VaadinSpringDataHelpers.toSpringDataSort(query)))
                 .stream());
         grid.addThemeVariants(GridVariant.LUMO_NO_BORDER);
 

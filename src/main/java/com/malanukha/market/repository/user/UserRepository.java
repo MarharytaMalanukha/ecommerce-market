@@ -1,10 +1,9 @@
 package com.malanukha.market.repository.user;
 
 import com.malanukha.market.domain.user.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import com.malanukha.market.repository.product.BaseAdminRepository;
 
-public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
+public interface UserRepository extends BaseAdminRepository<User, Long> {
 
     User findByUsername(String username);
 }

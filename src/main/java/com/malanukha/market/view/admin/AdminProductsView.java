@@ -1,7 +1,7 @@
 package com.malanukha.market.view.admin;
 
 import com.malanukha.market.domain.product.Product;
-import com.malanukha.market.dto.product.ProductDto;
+import com.malanukha.market.dto.ProductDto;
 import com.malanukha.market.service.admin.ProductAdminService;
 import com.malanukha.market.service.product.ProductCategoryService;
 import com.malanukha.market.service.product.ProductDiscountService;

@@ -1,7 +1,7 @@
 package com.malanukha.market.repository.shopping;
 
 import com.malanukha.market.domain.shopping.Order;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.malanukha.market.repository.product.BaseAdminRepository;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface OrderRepository extends BaseAdminRepository<Order, Long> {
 }

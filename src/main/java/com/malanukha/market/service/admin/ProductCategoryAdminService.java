@@ -1,7 +1,7 @@
 package com.malanukha.market.service.admin;
 
 import com.malanukha.market.domain.product.ProductCategory;
-import com.malanukha.market.dto.product.ProductCategoryDto;
+import com.malanukha.market.dto.ProductCategoryDto;
 import com.malanukha.market.repository.product.ProductCategoryRepository;
 import org.springframework.stereotype.Service;
 

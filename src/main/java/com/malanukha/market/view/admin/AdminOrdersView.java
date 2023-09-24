@@ -2,7 +2,7 @@ package com.malanukha.market.view.admin;
 
 import com.malanukha.market.domain.shopping.Order;
 import com.malanukha.market.domain.shopping.OrderPaymentStatus;
-import com.malanukha.market.dto.product.OrderDto;
+import com.malanukha.market.dto.OrderDto;
 import com.malanukha.market.service.admin.OrderAdminService;
 import com.malanukha.market.service.product.ProductCategoryService;
 import com.malanukha.market.service.product.ProductDiscountService;
