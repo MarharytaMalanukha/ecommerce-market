@@ -1,6 +1,7 @@
 package com.malanukha.market.domain.shopping;
 
 import com.malanukha.market.domain.user.User;
+import com.malanukha.market.domain.user.UserAddress;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -30,6 +31,11 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "payment_id")
     private OrderPayment orderPayment;
+
+    @ManyToOne
+    @JoinColumn(name = "user_address_id")
+    private UserAddress userAddress;
+
     private BigDecimal total;
 
     @Column(updatable = false)

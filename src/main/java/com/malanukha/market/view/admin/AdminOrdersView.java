@@ -2,10 +2,12 @@ package com.malanukha.market.view.admin;
 
 import com.malanukha.market.domain.shopping.Order;
 import com.malanukha.market.domain.shopping.OrderPaymentStatus;
+import com.malanukha.market.domain.user.User;
+import com.malanukha.market.domain.user.UserAddress;
+import com.malanukha.market.domain.user.UserPayment;
 import com.malanukha.market.dto.OrderDto;
 import com.malanukha.market.service.admin.OrderAdminService;
-import com.malanukha.market.service.product.ProductCategoryService;
-import com.malanukha.market.service.product.ProductDiscountService;
+import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
@@ -30,8 +32,11 @@ import java.util.Optional;
 @Uses(Icon.class)
 public class AdminOrdersView extends BaseAdminView<OrderDto, Order> {
 
-    public AdminOrdersView(OrderAdminService orderAdminService, ProductCategoryService productCategoryService, ProductDiscountService productDiscountService) {
-        super(orderAdminService, productCategoryService, productDiscountService);
+    private Select<String> userAddress;
+    private Select<String> userPayment;
+
+    public AdminOrdersView(OrderAdminService orderAdminService, UtilsService utilsService) {
+        super(orderAdminService, utilsService);
     }
 
     @Override
@@ -46,24 +51,42 @@ public class AdminOrdersView extends BaseAdminView<OrderDto, Order> {
 
     @Override
     protected List<String> getGridColumnNames() {
-        return List.of("id", "username", "orderTotal", "provider", "amountPayed", "paymentStatus");
+        return List.of("id", "username", "orderTotal", "userAddress", "userPayment", "amountPayed", "paymentStatus");
     }
 
     @Override
     protected List<Pair<TextField, Optional<Converter>>> getGridColumnsWithConverters() {
         TextField orderTotal = new TextField("orderTotal");
+        TextField username = new TextField("username");
+        username.addValueChangeListener(event -> {
+            User user = utilsService.findUserByUsername(event.getValue());
+            if (user != null) {
+                String [] userAddresses = user.getUserAddresses().stream()
+                        .map(UserAddress::toString)
+                        .toArray(String[]::new);
+                userAddress.setItems(userAddresses);
+                String [] userPayments = user.getUserPayments().stream()
+                        .map(UserPayment::toString)
+                        .toArray(String[]::new);
+                userPayment.setItems(userPayments);
+            }
+        });
         //orderTotal.setReadOnly(true);todo
         return List.of(
                 Pair.with(new TextField("id"), Optional.of(new StringToLongConverter("must be a long"))),
-                Pair.with(new TextField("username"), Optional.empty()),
+                Pair.with(username, Optional.empty()),
                 Pair.with(orderTotal, Optional.of(new StringToBigDecimalConverter("must be a BigDecimal"))),
-                Pair.with(new TextField("provider"), Optional.empty()),
                 Pair.with(new TextField("amountPayed"), Optional.of(new StringToBigDecimalConverter("must be a BigDecimal")))
         );
     }
 
     @Override
     protected List<Select<String>> getSelectColumns() {
+        userAddress = new Select<>();
+        userPayment = new Select<>();
+        userAddress.setLabel("userAddress");
+        userPayment.setLabel("userPayment");
+
         Select<String> paymentStatus = new Select<>();
         paymentStatus.setLabel("paymentStatus");
         paymentStatus.setItems(Arrays.stream(OrderPaymentStatus.values()).map(OrderPaymentStatus::name).toList());

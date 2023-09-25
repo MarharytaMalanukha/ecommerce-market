@@ -1,5 +1,6 @@
 package com.malanukha.market.domain.shopping;
 
+import com.malanukha.market.domain.user.UserPayment;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,7 +26,10 @@ public class OrderPayment {
     private Order order;
 
     private BigDecimal amount;
-    private String provider;
+
+    @ManyToOne
+    @JoinColumn(name = "user_payment_id")
+    private UserPayment userPayment;
 
     @Enumerated(EnumType.STRING)
     private OrderPaymentStatus paymentStatus;

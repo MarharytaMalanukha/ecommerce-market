@@ -3,7 +3,7 @@ package com.malanukha.market.view;
 
 import com.malanukha.market.domain.product.ProductCategory;
 import com.malanukha.market.security.AuthenticatedUser;
-import com.malanukha.market.service.product.ProductCategoryService;
+import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.admin.AdminProductsView;
 import com.malanukha.market.view.category.CategoryView;
 import com.malanukha.market.view.error.EmptyView;
@@ -19,8 +19,8 @@ import java.util.Map;
 
 public class MainLayout extends BaseApplicationLayout {
 
-    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, ProductCategoryService productCategoryService) {
-        super(authenticatedUser, accessChecker, productCategoryService);
+    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, UtilsService utilsService) {
+        super(authenticatedUser, accessChecker, utilsService);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MainLayout extends BaseApplicationLayout {
 
     @Override
     protected MenuItemInfo[] createMenuItems() {
-        List<ProductCategory> categories = productCategoryService.getMainProductCategories();
+        List<ProductCategory> categories = utilsService.getMainProductCategories();
         if (categories.isEmpty())
             return new MenuItemInfo[] { new MenuItemInfo("Empty View", LineAwesomeIcon.TH_LIST_SOLID.create(), EmptyView.class) };
         return categories.stream()

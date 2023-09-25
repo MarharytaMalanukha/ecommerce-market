@@ -3,8 +3,7 @@ package com.malanukha.market.view.admin;
 import com.malanukha.market.domain.product.ProductDiscount;
 import com.malanukha.market.dto.ProductDiscountDto;
 import com.malanukha.market.service.admin.ProductDiscountAdminService;
-import com.malanukha.market.service.product.ProductCategoryService;
-import com.malanukha.market.service.product.ProductDiscountService;
+import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
@@ -27,10 +26,8 @@ import java.util.Optional;
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
 public class AdminProductDiscountsView extends BaseAdminView<ProductDiscountDto, ProductDiscount>{
-    public AdminProductDiscountsView(ProductDiscountAdminService baseAdminService,
-                                     ProductCategoryService productCategoryService,
-                                     ProductDiscountService productDiscountService) {
-        super(baseAdminService, productCategoryService, productDiscountService);
+    public AdminProductDiscountsView(ProductDiscountAdminService baseAdminService, UtilsService utilsService) {
+        super(baseAdminService, utilsService);
     }
 
     @Override

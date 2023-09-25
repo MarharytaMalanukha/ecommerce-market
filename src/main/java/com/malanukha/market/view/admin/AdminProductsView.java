@@ -3,8 +3,7 @@ package com.malanukha.market.view.admin;
 import com.malanukha.market.domain.product.Product;
 import com.malanukha.market.dto.ProductDto;
 import com.malanukha.market.service.admin.ProductAdminService;
-import com.malanukha.market.service.product.ProductCategoryService;
-import com.malanukha.market.service.product.ProductDiscountService;
+import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
@@ -29,10 +28,8 @@ import java.util.Optional;
 @Uses(Icon.class)
 public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
 
-    public AdminProductsView(ProductAdminService productAdminService,
-                             ProductCategoryService productCategoryService,
-                             ProductDiscountService productDiscountService) {
-        super(productAdminService, productCategoryService, productDiscountService);
+    public AdminProductsView(ProductAdminService productAdminService, UtilsService utilsService) {
+        super(productAdminService, utilsService);
     }
 
     @Override
@@ -64,8 +61,8 @@ public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
 
     @Override
     protected List<Select<String>> getSelectColumns() {
-        List<String> categoriesNames = productCategoryService.getProductCategoryNames();
-        List<String> discountsNames = productDiscountService.getProductDiscountNames();
+        List<String> categoriesNames = utilsService.getProductCategoryNames();
+        List<String> discountsNames = utilsService.getProductDiscountNames();
         if (categoriesNames.isEmpty()) {
             editorDataIsConfigured = false;
         }

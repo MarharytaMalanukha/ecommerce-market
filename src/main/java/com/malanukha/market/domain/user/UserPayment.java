@@ -22,8 +22,15 @@ public class UserPayment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "is_primary")
+    private boolean primary;
     private String paymentType;
     private String provider;
     private String accountNumber;
     private LocalDate expiry;
+
+    @Override
+    public String toString() {
+        return String.join(";", paymentType, provider, id + "");
+    }
 }

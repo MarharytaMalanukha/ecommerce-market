@@ -1,8 +1,7 @@
 package com.malanukha.market.view.admin;
 
 import com.malanukha.market.service.admin.BaseAdminService;
-import com.malanukha.market.service.product.ProductCategoryService;
-import com.malanukha.market.service.product.ProductDiscountService;
+import com.malanukha.market.service.utils.UtilsService;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -43,18 +42,17 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
 
     private T sampleEntity;
 
-    private final BaseAdminService<T, T2> baseAdminService;
-    protected final ProductCategoryService productCategoryService;
-    protected final ProductDiscountService productDiscountService;
+    protected final BaseAdminService<T, T2> baseAdminService;
+    protected final UtilsService utilsService;
 
     private final List<Pair<TextField, Optional<Converter>>> listOfGridColumns;
     private final List<Select<String>> listOfSelectColumns;
     protected boolean editorDataIsConfigured = true;
 
-    public BaseAdminView(BaseAdminService<T, T2> baseAdminService, ProductCategoryService productCategoryService, ProductDiscountService productDiscountService) {
+    public BaseAdminView(BaseAdminService<T, T2> baseAdminService, UtilsService utilsService) {
         this.baseAdminService = baseAdminService;
-        this.productCategoryService = productCategoryService;
-        this.productDiscountService = productDiscountService;
+        this.utilsService = utilsService;
+
         listOfGridColumns = getGridColumnsWithConverters();
         listOfSelectColumns = getSelectColumns();
 

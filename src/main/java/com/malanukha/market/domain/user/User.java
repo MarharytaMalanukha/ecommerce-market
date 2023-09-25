@@ -45,6 +45,9 @@ public class User {
     @OneToOne(mappedBy = "user")
     private ShoppingSession shoppingSession;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserAddress> userAddresses;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserPayment> userPayments;
 }

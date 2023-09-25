@@ -21,16 +21,18 @@ CREATE TABLE cart_items (
 CREATE TABLE order_payments (
     id bigserial primary key,
     amount decimal not null,
-    provider varchar(30) not null,
+    user_payment_id bigint,
     payment_status varchar(20) not null,
     created_at timestamp not null,
-    modified_at timestamp not null
+    modified_at timestamp not null,
+    FOREIGN KEY (user_payment_id) REFERENCES user_payments(id)
 );
 
 CREATE TABLE orders (
     id bigserial primary key,
     user_id bigint not null,
     payment_id bigint not null,
+    user_address_id bigint,
     total decimal not null,
     created_at timestamp not null,
     modified_at timestamp not null,

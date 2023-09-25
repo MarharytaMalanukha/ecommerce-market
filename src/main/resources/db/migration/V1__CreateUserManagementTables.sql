@@ -15,6 +15,7 @@ CREATE TABLE users (
 CREATE TABLE user_addresses (
     id bigserial primary key,
     user_id bigint not null,
+    is_primary boolean default false not null,
     address_line varchar(150) not null,
     city varchar(30) not null,
     postal_code varchar(10) not null,
@@ -25,6 +26,7 @@ CREATE TABLE user_addresses (
 CREATE TABLE user_payments (
     id bigserial primary key,
     user_id bigint not null,
+    is_primary boolean default false not null,
     payment_type varchar(30) not null,
     provider varchar(30) not null,
     account_number varchar(30) not null,

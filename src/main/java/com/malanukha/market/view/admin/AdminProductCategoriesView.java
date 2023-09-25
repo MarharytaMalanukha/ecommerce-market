@@ -3,8 +3,7 @@ package com.malanukha.market.view.admin;
 import com.malanukha.market.domain.product.ProductCategory;
 import com.malanukha.market.dto.ProductCategoryDto;
 import com.malanukha.market.service.admin.BaseAdminService;
-import com.malanukha.market.service.product.ProductCategoryService;
-import com.malanukha.market.service.product.ProductDiscountService;
+import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
@@ -26,8 +25,8 @@ import java.util.Optional;
 @RolesAllowed("ADMIN")
 @Uses(Icon.class)
 public class AdminProductCategoriesView extends BaseAdminView<ProductCategoryDto, ProductCategory> {
-    public AdminProductCategoriesView(BaseAdminService<ProductCategoryDto, ProductCategory> baseAdminService, ProductCategoryService productCategoryService, ProductDiscountService productDiscountService) {
-        super(baseAdminService, productCategoryService, productDiscountService);
+    public AdminProductCategoriesView(BaseAdminService<ProductCategoryDto, ProductCategory> baseAdminService, UtilsService utilsService) {
+        super(baseAdminService, utilsService);
     }
 
     @Override
@@ -58,7 +57,7 @@ public class AdminProductCategoriesView extends BaseAdminView<ProductCategoryDto
     protected List<Select<String>> getSelectColumns() {
         Select<String> mainCategoryName = new Select<>();
         mainCategoryName.setLabel("mainCategoryName");
-        var mainCategories = productCategoryService.getMainProductCategories().stream()
+        var mainCategories = utilsService.getMainProductCategories().stream()
                 .map(ProductCategory::getName)
                 .toList(); //todo optimize
         mainCategoryName.setItems(mainCategories);

@@ -1,7 +1,7 @@
 package com.malanukha.market.view;
 
 import com.malanukha.market.security.AuthenticatedUser;
-import com.malanukha.market.service.product.ProductCategoryService;
+import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.admin.*;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.ComponentEventListener;
@@ -13,8 +13,8 @@ import java.util.Map;
 
 public class AdminLayout extends BaseApplicationLayout {
 
-    public AdminLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, ProductCategoryService productCategoryService) {
-        super(authenticatedUser, accessChecker, productCategoryService);
+    public AdminLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker, UtilsService utilsService) {
+        super(authenticatedUser, accessChecker, utilsService);
     }
 
     @Override
@@ -30,6 +30,7 @@ public class AdminLayout extends BaseApplicationLayout {
                 new MenuItemInfo("Products", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductsView.class),
                 new MenuItemInfo("Discounts", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminProductDiscountsView.class),
                 new MenuItemInfo("Orders", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminOrdersView.class),
+                new MenuItemInfo("Users", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminUsersView.class),
               //  new MenuItemInfo("Order Items", LineAwesomeIcon.COLUMNS_SOLID.create(), AdminOrderItemsFilterView.class)
               //  new MenuItemInfo("SuperAdmin panel", LineAwesomeIcon.FILE.create(), SuperAdminpanelView.class),
 
