@@ -1,5 +1,7 @@
 package com.malanukha.market.service.admin;
 
+import com.malanukha.market.exception.DtoDoesNotExistException;
+import com.malanukha.market.exception.EntityDoesNotExistException;
 import com.malanukha.market.repository.product.BaseAdminRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,6 +39,18 @@ public abstract class BaseAdminService<T1, T2> {
 
     public int count() {
         return (int) repository.count();
+    }
+
+    protected void validateDto(T1 dto) {
+        if (dto == null) {
+            throw new DtoDoesNotExistException("The dto object should not be null.");
+        }
+    }
+
+    protected void validateEntity(T2 entity) {
+        if (entity == null) {
+            throw new EntityDoesNotExistException("The entity object should not be null.");
+        }
     }
 
     protected abstract T2 convertFromDto(T1 dto);

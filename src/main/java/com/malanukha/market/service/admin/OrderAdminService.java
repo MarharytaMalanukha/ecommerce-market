@@ -30,6 +30,7 @@ public class OrderAdminService extends BaseAdminService<OrderDto, Order> {
 
     @Override
     protected Order convertFromDto(OrderDto dto) {
+        validateDto(dto);
         User user = userRepository.findByUsername(dto.getUsername());
         OrderPayment orderPayment = OrderPayment.builder()
                 .userPayment(stringToUserPayment(dto.getUserPayment()))
@@ -37,6 +38,7 @@ public class OrderAdminService extends BaseAdminService<OrderDto, Order> {
                 .paymentStatus(OrderPaymentStatus.valueOf(dto.getPaymentStatus()))
                 .build();
         return Order.builder()
+                .id(dto.getId())
                 .user(user)
                 .total(dto.getOrderTotal())
                 .orderPayment(orderPayment)
@@ -46,6 +48,7 @@ public class OrderAdminService extends BaseAdminService<OrderDto, Order> {
 
     @Override
     protected OrderDto convertToDto(Order entity) {
+        validateEntity(entity);
         OrderPayment orderPayment = entity.getOrderPayment();
         return OrderDto.builder()
                 .id(entity.getId())

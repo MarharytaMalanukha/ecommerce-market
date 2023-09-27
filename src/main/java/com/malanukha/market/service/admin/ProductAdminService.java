@@ -24,6 +24,7 @@ public class ProductAdminService extends BaseAdminService<ProductDto, Product> {
 
     @Override
     protected Product convertFromDto(ProductDto dto) {
+        validateDto(dto);
         ProductDiscount productDiscount = null;
         if (!dto.getDiscount().isEmpty()) {
             productDiscount = productDiscountRepository.findFirstByName(dto.getDiscount());
@@ -43,6 +44,7 @@ public class ProductAdminService extends BaseAdminService<ProductDto, Product> {
 
     @Override
     protected ProductDto convertToDto(Product entity) {
+        validateEntity(entity);
         return ProductDto.builder()
                 .id(entity.getId())
                 .sku(entity.getSku())
