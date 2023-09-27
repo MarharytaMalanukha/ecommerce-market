@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductCategoryAdminServiceTest {
+class ProductCategoryAdminServiceTest {
 
     @InjectMocks
     private ProductCategoryAdminService service;
@@ -25,37 +25,37 @@ public class ProductCategoryAdminServiceTest {
     private ProductCategoryRepository repository;
 
     @Test
-    public void convertFromDto_dtoIsCorrectAndCategoryIsMain_returnEntityWithoutMainCategorySet() {
+    void convertFromDto_dtoIsCorrectAndCategoryIsMain_returnEntityWithoutMainCategorySet() {
         ProductCategory actualCategory = service.convertFromDto(categoryDto("Yes", ""));
         assertEquals(category(null), actualCategory);
     }
 
     @Test
-    public void convertFromDto_dtoIsCorrectAndCategoryIsNotMain_returnEntityWithMainCategorySet() {
+    void convertFromDto_dtoIsCorrectAndCategoryIsNotMain_returnEntityWithMainCategorySet() {
         Mockito.when(repository.findFirstByName("mainCategoryName")).thenReturn(mainCategory());
         ProductCategory actualCategory = service.convertFromDto(categoryDto("No", "mainCategoryName"));
         assertEquals(category(mainCategory()), actualCategory);
     }
 
     @Test
-    public void convertFromDto_dtoIsNull_throwDtoDoesNotExistException() {
+    void convertFromDto_dtoIsNull_throwDtoDoesNotExistException() {
         assertThrows(DtoDoesNotExistException.class, () -> service.convertFromDto(null));
     }
 
     @Test
-    public void convertToDto_dtoIsCorrectAndMainCategoryDoesNotExist_returnDtoWithoutMainCategorySet() {
+    void convertToDto_dtoIsCorrectAndMainCategoryDoesNotExist_returnDtoWithoutMainCategorySet() {
         ProductCategoryDto actualCategoryDto = service.convertToDto(category(null));
         assertEquals(categoryDto("Yes", ""), actualCategoryDto);
     }
 
     @Test
-    public void convertToDto_dtoIsCorrectAndMainCategoryExist_returnDtoWithMainCategorySet() {
+    void convertToDto_dtoIsCorrectAndMainCategoryExist_returnDtoWithMainCategorySet() {
         ProductCategoryDto actualCategoryDto = service.convertToDto(category(mainCategory()));
         assertEquals(categoryDto("No", "mainCategoryName"), actualCategoryDto);
     }
 
     @Test
-    public void convertToDto_entityIsNull_throwEntityDoesNotExistException() {
+    void convertToDto_entityIsNull_throwEntityDoesNotExistException() {
         assertThrows(EntityDoesNotExistException.class, () -> service.convertToDto(null));
     }
 

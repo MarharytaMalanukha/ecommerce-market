@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Optional;
 
 public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObserver {
-    private final String ENTITY_ID = "entityID";
-    private final String ENTITY_EDIT_ROUTE_TEMPLATE = "admin/%s/%s/edit";
+    private static final String ENTITY_ID = "entityID";
+    private static final String ENTITY_EDIT_ROUTE_TEMPLATE = "admin/%s/%s/edit";
 
     private final Grid<T> grid;
 

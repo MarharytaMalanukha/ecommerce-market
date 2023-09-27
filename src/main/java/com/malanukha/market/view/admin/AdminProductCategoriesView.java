@@ -63,9 +63,9 @@ public class AdminProductCategoriesView extends BaseAdminView<ProductCategoryDto
         mainCategoryName.setItems(mainCategories);
         mainCategoryName.setVisible(false);
 
-        Select<String> isMainCategory = new Select<>("isMainCategory", event -> {
-            mainCategoryName.setVisible(!event.getValue().equals("Yes")); //if it's the main category, it doesn't require an additional field
-        }, "Yes", "No");
+        Select<String> isMainCategory = new Select<>("isMainCategory", event ->
+            mainCategoryName.setVisible(!event.getValue().equals("Yes")) //if it's the main category, it doesn't require an additional field
+        , "Yes", "No");
 
         return List.of(isMainCategory, mainCategoryName);
     }

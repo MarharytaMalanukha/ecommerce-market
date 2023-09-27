@@ -15,42 +15,42 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductDiscountAdminServiceTest {
+class ProductDiscountAdminServiceTest {
 
     @InjectMocks
     private ProductDiscountAdminService service;
 
     @Test
-    public void convertFromDto_dtoIsCorrectAndActive_returnEntityWithActiveTrue() {
+    void convertFromDto_dtoIsCorrectAndActive_returnEntityWithActiveTrue() {
         ProductDiscount actualProductDiscount = service.convertFromDto(productDiscountDto("Yes"));
         assertEquals(productDiscount(true), actualProductDiscount);
     }
 
     @Test
-    public void convertFromDto_dtoIsCorrectAndActiveIsNotSet_returnEntityWithActiveFalse() {
+    void convertFromDto_dtoIsCorrectAndActiveIsNotSet_returnEntityWithActiveFalse() {
         ProductDiscount actualProductDiscount = service.convertFromDto(productDiscountDto("IncorrectValue"));
         assertEquals(productDiscount(false), actualProductDiscount);
     }
 
     @Test
-    public void convertFromDto_dtoIsNull_throwDtoDoesNotExistException() {
+    void convertFromDto_dtoIsNull_throwDtoDoesNotExistException() {
         assertThrows(DtoDoesNotExistException.class, () -> service.convertFromDto(null));
     }
 
     @Test
-    public void convertToDto_entityIsCorrectAndActive_returnDtoWithActiveYes() {
+    void convertToDto_entityIsCorrectAndActive_returnDtoWithActiveYes() {
         ProductDiscountDto actualProductDiscountDto = service.convertToDto(productDiscount(true));
         assertEquals(productDiscountDto("Yes"), actualProductDiscountDto);
     }
 
     @Test
-    public void convertToDto_entityIsCorrectAndNonActive_returnDtoWithActiveNo() {
+    void convertToDto_entityIsCorrectAndNonActive_returnDtoWithActiveNo() {
         ProductDiscountDto actualProductDiscountDto = service.convertToDto(productDiscount(false));
         assertEquals(productDiscountDto("No"), actualProductDiscountDto);
     }
 
     @Test
-    public void convertToDto_entityIsNull_throwEntityDoesNotExistException() {
+    void convertToDto_entityIsNull_throwEntityDoesNotExistException() {
         assertThrows(EntityDoesNotExistException.class, () -> service.convertToDto(null));
     }
 

@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
-public class OrderAdminServiceTest {
+class OrderAdminServiceTest {
 
     @InjectMocks
     private OrderAdminService service;
@@ -40,7 +40,7 @@ public class OrderAdminServiceTest {
     private UserPaymentRepository userPaymentRepository;
 
     @Test
-    public void convertFromDto_dtoIsCorrect_returnEntity() {
+    void convertFromDto_dtoIsCorrect_returnEntity() {
         //given
         OrderDto orderDto = orderDto();
         Order expectedOrder = order();
@@ -57,12 +57,12 @@ public class OrderAdminServiceTest {
     }
 
     @Test
-    public void convertFromDto_dtoIsNull_throwDtoDoesNotExistException() {
+    void convertFromDto_dtoIsNull_throwDtoDoesNotExistException() {
         assertThrows(DtoDoesNotExistException.class, () -> service.convertFromDto(null));
     }
 
     @Test
-    public void convertToDto_entityIsCorrect_returnDto() {
+    void convertToDto_entityIsCorrect_returnDto() {
         //given
         Order order = order();
         OrderDto expectedOrderDto = orderDto();
@@ -75,7 +75,7 @@ public class OrderAdminServiceTest {
     }
 
     @Test
-    public void convertToDto_entityIsNull_throwEntityDoesNotExistException() {
+    void convertToDto_entityIsNull_throwEntityDoesNotExistException() {
         assertThrows(EntityDoesNotExistException.class, () -> service.convertToDto(null));
     }
 
