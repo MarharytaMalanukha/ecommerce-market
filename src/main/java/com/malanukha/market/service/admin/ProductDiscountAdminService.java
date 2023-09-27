@@ -14,6 +14,7 @@ public class ProductDiscountAdminService extends BaseAdminService<ProductDiscoun
 
     @Override
     protected ProductDiscount convertFromDto(ProductDiscountDto dto) {
+        validateDto(dto);
         return ProductDiscount.builder()
                 .id(dto.getId())
                 .name(dto.getName())
@@ -25,6 +26,7 @@ public class ProductDiscountAdminService extends BaseAdminService<ProductDiscoun
 
     @Override
     protected ProductDiscountDto convertToDto(ProductDiscount entity) {
+        validateEntity(entity);
         return ProductDiscountDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())

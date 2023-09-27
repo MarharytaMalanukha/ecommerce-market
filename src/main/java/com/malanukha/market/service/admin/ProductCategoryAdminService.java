@@ -17,6 +17,7 @@ public class ProductCategoryAdminService extends BaseAdminService<ProductCategor
 
     @Override
     protected ProductCategory convertFromDto(ProductCategoryDto dto) {
+        validateDto(dto);
         var categoryBuilder = ProductCategory.builder()
                     .id(dto.getId())
                     .name(dto.getName())
@@ -33,6 +34,7 @@ public class ProductCategoryAdminService extends BaseAdminService<ProductCategor
 
     @Override
     protected ProductCategoryDto convertToDto(ProductCategory entity) {
+        validateEntity(entity);
         var categoryDtoBuilder = ProductCategoryDto.builder()
                 .id(entity.getId())
                 .name(entity.getName())
