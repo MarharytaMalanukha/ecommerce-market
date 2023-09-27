@@ -16,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"createdAt", "modifiedAt", "products"})
 public class ProductDiscount {
 
     @Id

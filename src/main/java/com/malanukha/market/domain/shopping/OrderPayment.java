@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"order", "createdAt", "modifiedAt"})
 public class OrderPayment {
 
     @Id

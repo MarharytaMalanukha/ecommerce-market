@@ -18,6 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"createdAt", "modifiedAt", "shoppingSession", "userAddresses", "userPayments"})
 public class User {
 
     @Id

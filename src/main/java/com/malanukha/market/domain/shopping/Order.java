@@ -18,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"createdAt", "modifiedAt", "orderItems"})
 public class Order {
 
     @Id
