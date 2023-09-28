@@ -36,7 +36,11 @@ public class UtilsService {
         return userRepository.findByUsername(username);
     }
 
-    public ProductCategory findCategoryByName(String name) {
-        return productCategoryRepository.findFirstByName(name);
+    public ProductCategory findCategoryByNameWithCategories(String name) {
+        return productCategoryRepository.fetchProductCategoryWithProductCategories(name);
+    }
+
+    public ProductCategory findCategoryByNameWithProducts(String name) {
+        return productCategoryRepository.fetchProductCategoryWithProducts(name);
     }
 }

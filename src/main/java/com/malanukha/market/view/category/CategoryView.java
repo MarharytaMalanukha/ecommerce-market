@@ -41,7 +41,7 @@ public class CategoryView extends Main implements BeforeEnterObserver, HasCompon
                 .get(MAIN_CATEGORY_NAME)
                 .orElseThrow()
                 .replace("_", " ");
-        mainCategory = utilsService.findCategoryByName(categoryName);
+        mainCategory = utilsService.findCategoryByNameWithCategories(categoryName);
 
         constructUI();
         for (ProductCategory category : mainCategory.getProductCategories()) {

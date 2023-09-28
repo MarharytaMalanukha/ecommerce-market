@@ -11,8 +11,16 @@ public interface ProductCategoryRepository extends BaseAdminRepository<ProductCa
     @Query("select p.name from ProductCategory p")
     List<String> getName();
 
-    @EntityGraph(value = "graph.MainProductCategory")
     ProductCategory findFirstByName(String name);
+
+    @EntityGraph(value = "ProductCategory.productCategories")
+    @Query("select p from ProductCategory p where p.name = ?1")
+    ProductCategory fetchProductCategoryWithProductCategories(String name);
+
+    @EntityGraph(value = "ProductCategory.products")
+    @Query("select p from ProductCategory p where p.name = ?1")
+    ProductCategory fetchProductCategoryWithProducts(String name);
+
     @Query("select p from ProductCategory p where p.mainProductCategory is null")
     List<ProductCategory> findMainCategories();
 }

@@ -42,7 +42,7 @@ public class ProductsView extends Main implements BeforeEnterObserver, HasCompon
                 .get(CATEGORY_NAME)
                 .orElseThrow()
                 .replace("_", " ");
-        category = utilsService.findCategoryByName(categoryName);
+        category = utilsService.findCategoryByNameWithProducts(categoryName);
 
         constructUI();
         for (Product product : category.getProducts()) {
