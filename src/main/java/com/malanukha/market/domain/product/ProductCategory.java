@@ -16,6 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @EqualsAndHashCode(exclude = {"createdAt", "modifiedAt", "products", "productCategories"})
+@NamedEntityGraph(name = "graph.MainProductCategory",
+        attributeNodes = @NamedAttributeNode(value = "productCategories", subgraph = "subgraph.ProductCategory"),
+        subgraphs = @NamedSubgraph(name = "subgraph.ProductCategory", attributeNodes = @NamedAttributeNode(value = "products"))
+)
 public class ProductCategory {
 
     @Id

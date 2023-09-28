@@ -48,7 +48,7 @@ public class AdminProductCategoriesView extends BaseAdminView<ProductCategoryDto
     protected List<Pair<TextField, Optional<Converter>>> getGridColumnsWithConverters() {
         return List.of(
                 Pair.with(new TextField("id"), Optional.of(new StringToLongConverter("must be a long"))),
-                Pair.with(new TextField("name"), Optional.empty()),
+                Pair.with(new TextField("name"), Optional.empty()), //todo validation so name contains only numbers, letters and whitespace
                 Pair.with(new TextField("description"), Optional.empty())
         );
     }

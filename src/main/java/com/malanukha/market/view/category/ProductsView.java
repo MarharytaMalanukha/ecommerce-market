@@ -1,5 +1,6 @@
 package com.malanukha.market.view.category;
 
+import com.malanukha.market.domain.product.Product;
 import com.malanukha.market.domain.product.ProductCategory;
 import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.MainLayout;
@@ -17,50 +18,50 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import com.vaadin.flow.theme.lumo.LumoUtility.*;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 
-@PageTitle("Category")
-@Route(value = "category/:mainCategoryName", layout = MainLayout.class)
+@PageTitle("Products")
+@Route(value = "category/:mainCategoryName/:categoryName/products", layout = MainLayout.class)
 @AnonymousAllowed
-public class CategoryView extends Main implements BeforeEnterObserver, HasComponents, HasStyle {
+public class ProductsView extends Main implements BeforeEnterObserver, HasComponents, HasStyle {
 
-    private static final String MAIN_CATEGORY_NAME = "mainCategoryName";
+    private static final String CATEGORY_NAME = "categoryName";
 
-    private ProductCategory mainCategory;
+    private ProductCategory category;
     private OrderedList imageContainer;
 
     private final UtilsService utilsService;
 
-    public CategoryView(UtilsService utilsService) {
+    public ProductsView(UtilsService utilsService) {
         this.utilsService = utilsService;
     }
 
     @Override
     public void beforeEnter(BeforeEnterEvent event) {
         String categoryName = event.getRouteParameters()
-                .get(MAIN_CATEGORY_NAME)
+                .get(CATEGORY_NAME)
                 .orElseThrow()
                 .replace("_", " ");
-        mainCategory = utilsService.findCategoryByName(categoryName);
+        category = utilsService.findCategoryByName(categoryName);
 
         constructUI();
-        for (ProductCategory category : mainCategory.getProductCategories()) {
-            imageContainer.add(new CategoryViewCard(category));
+        for (Product product : category.getProducts()) {
+            imageContainer.add(new ProductViewCard(product));
         }
     }
 
     private void constructUI() {
         addClassNames("category-view");
-        addClassNames(MaxWidth.SCREEN_LARGE, Margin.Horizontal.AUTO, Padding.Bottom.LARGE, Padding.Horizontal.LARGE);
+        addClassNames(LumoUtility.MaxWidth.SCREEN_LARGE, LumoUtility.Margin.Horizontal.AUTO, LumoUtility.Padding.Bottom.LARGE, LumoUtility.Padding.Horizontal.LARGE);
 
         HorizontalLayout container = new HorizontalLayout();
-        container.addClassNames(AlignItems.CENTER, JustifyContent.BETWEEN);
+        container.addClassNames(LumoUtility.AlignItems.CENTER, LumoUtility.JustifyContent.BETWEEN);
 
         VerticalLayout headerContainer = new VerticalLayout();
-        H2 header = new H2(mainCategory.getName());
-        header.addClassNames(Margin.Bottom.NONE, Margin.Top.XLARGE, FontSize.XXXLARGE);
-        Paragraph description = new Paragraph(mainCategory.getDescription());
-        description.addClassNames(Margin.Bottom.XLARGE, Margin.Top.NONE, TextColor.SECONDARY);
+        H2 header = new H2(category.getName());
+        header.addClassNames(LumoUtility.Margin.Bottom.NONE, LumoUtility.Margin.Top.XLARGE, LumoUtility.FontSize.XXXLARGE);
+        Paragraph description = new Paragraph(category.getDescription());
+        description.addClassNames(LumoUtility.Margin.Bottom.XLARGE, LumoUtility.Margin.Top.NONE, LumoUtility.TextColor.SECONDARY);
         headerContainer.add(header, description);
 
         Select<String> sortBy = new Select<>();
@@ -69,7 +70,7 @@ public class CategoryView extends Main implements BeforeEnterObserver, HasCompon
         sortBy.setValue("Popularity");
 
         imageContainer = new OrderedList();
-        imageContainer.addClassNames(Gap.MEDIUM, Display.GRID, ListStyleType.NONE, Margin.NONE, Padding.NONE);
+        imageContainer.addClassNames(LumoUtility.Gap.MEDIUM, LumoUtility.Display.GRID, LumoUtility.ListStyleType.NONE, LumoUtility.Margin.NONE, LumoUtility.Padding.NONE);
 
         container.add(headerContainer, sortBy);
         add(container, imageContainer);

@@ -12,11 +12,13 @@ import com.vaadin.flow.component.contextmenu.MenuItem;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.menubar.MenuBar;
+import com.vaadin.flow.router.RouteParameters;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.javatuples.Pair;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 public abstract class BaseApplicationLayout extends AppLayout {
@@ -37,12 +39,12 @@ public abstract class BaseApplicationLayout extends AppLayout {
 
         private final Class<? extends Component> view;
 
-        public MenuItemInfo(String menuTitle, Component icon, Class<? extends Component> view) {
+        public MenuItemInfo(String menuTitle, Component icon, Class<? extends Component> view, RouteParameters parameter) {
             this.view = view;
             RouterLink link = new RouterLink();
             link.addClassNames(LumoUtility.Display.FLEX, LumoUtility.Gap.XSMALL, LumoUtility.Height.MEDIUM, LumoUtility.AlignItems.CENTER, LumoUtility.Padding.Horizontal.SMALL,
                     LumoUtility.TextColor.BODY);
-            link.setRoute(view);
+            link.setRoute(view, parameter);
 
             Span text = new Span(menuTitle);
             text.addClassNames(LumoUtility.FontWeight.MEDIUM, LumoUtility.FontSize.MEDIUM, LumoUtility.Whitespace.NOWRAP);
@@ -52,6 +54,10 @@ public abstract class BaseApplicationLayout extends AppLayout {
             }
             link.add(text);
             add(link);
+        }
+
+        public MenuItemInfo(String menuTitle, Component icon, Class<? extends Component> view) {
+            this(menuTitle, icon, view, RouteParameters.empty());
         }
 
         public Class<?> getView() {
@@ -96,7 +102,7 @@ public abstract class BaseApplicationLayout extends AppLayout {
             userName.add(div);
 
             createProfileMenuItems().forEach(
-               (s, clickEventComponentEventListener) -> userName.getSubMenu().addItem(s, clickEventComponentEventListener)
+               (pair) -> userName.getSubMenu().addItem(pair.getValue0(), pair.getValue1())
             );
 
             layout.add(userMenu);
@@ -122,7 +128,7 @@ public abstract class BaseApplicationLayout extends AppLayout {
         return header;
     }
 
-    protected abstract Map<String, ComponentEventListener<ClickEvent<MenuItem>>> createProfileMenuItems();
-    protected abstract MenuItemInfo[] createMenuItems();
+    protected abstract List<Pair<String, ComponentEventListener<ClickEvent<MenuItem>>>> createProfileMenuItems();
+    protected abstract List<MenuItemInfo> createMenuItems();
 
 }

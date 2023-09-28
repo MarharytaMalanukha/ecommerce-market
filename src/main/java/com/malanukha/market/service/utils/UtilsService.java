@@ -21,7 +21,7 @@ public class UtilsService {
     private UserRepository userRepository;
 
     public List<ProductCategory> getMainProductCategories() {
-        return productCategoryRepository.findByMainProductCategoryIsNull();
+        return productCategoryRepository.findMainCategories();
     }
 
     public List<String> getProductCategoryNames() {
@@ -34,5 +34,9 @@ public class UtilsService {
 
     public User findUserByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    public ProductCategory findCategoryByName(String name) {
+        return productCategoryRepository.findFirstByName(name);
     }
 }

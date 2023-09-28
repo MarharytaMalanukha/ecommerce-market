@@ -13,7 +13,7 @@ CREATE TABLE product_discounts (
     name varchar(30) unique not null,
     description text,
     discount_percent decimal not null,
-    active boolean default true,
+    active boolean default true not null,
     created_at timestamp not null,
     modified_at timestamp not null
 );
@@ -27,7 +27,7 @@ CREATE TABLE products (
     quantity integer not null,
     price_euro decimal not null,
     product_category_id bigint not null,
-    product_discount_id bigint,
+    product_discount_id bigint not null,
     created_at timestamp not null,
     modified_at timestamp not null,
     FOREIGN KEY (product_category_id) REFERENCES product_categories(id),

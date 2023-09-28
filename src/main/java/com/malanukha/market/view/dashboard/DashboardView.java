@@ -1,4 +1,4 @@
-package com.malanukha.market.view.error;
+package com.malanukha.market.view.dashboard;
 
 import com.malanukha.market.view.MainLayout;
 import com.vaadin.flow.component.html.H2;
@@ -11,13 +11,13 @@ import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
-@PageTitle("Empty View")
-@Route(value = "empty", layout = MainLayout.class)
+@PageTitle("Dashboard")
+@Route(value = "dashboard", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
 @AnonymousAllowed
-public class EmptyView extends VerticalLayout {
+public class DashboardView extends VerticalLayout {
 
-    public EmptyView() {
+    public DashboardView() {
         setSpacing(false);
 
         Image img = new Image("images/empty-plant.png", "placeholder plant");
