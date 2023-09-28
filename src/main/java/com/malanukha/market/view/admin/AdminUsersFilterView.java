@@ -45,7 +45,7 @@ public class AdminUsersFilterView extends Div {
     public AdminUsersFilterView(UserService userService) {
         this.userService = userService;
         setSizeFull();
-        addClassNames("users-view");
+        addClassNames("admin-filter-users-view");
 
         filters = new Filters(this::refreshGrid);
         VerticalLayout layout = new VerticalLayout(createMobileFilters(), filters, createGrid());

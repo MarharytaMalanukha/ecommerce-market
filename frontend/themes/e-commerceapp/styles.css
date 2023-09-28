@@ -1,5 +1,12 @@
 @import url('./main-layout.css');
+
+@import url('./views/admin-categories-view.css')
+@import url('./views/admin-discounts-view.css')
+@import url('./views/admin-filter-users-view.css')
+@import url('./views/admin-orders-view.css')
+@import url('./views/admin-products-view.css')
+
+@import url('./views/category-view.css');
 @import url('./views/login-view.css');
 @import url('./views/checkout-view.css');
-@import url('./views/category-view.css');
 @import url('./views/add-credit-card-view.css');

@@ -2,6 +2,7 @@ package com.malanukha.market.view.admin;
 
 import com.malanukha.market.service.admin.BaseAdminService;
 import com.malanukha.market.service.utils.UtilsService;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -46,7 +47,7 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
     protected final UtilsService utilsService;
 
     private final List<Pair<TextField, Optional<Converter>>> listOfGridColumns;
-    private final List<Select<String>> listOfSelectColumns;
+    private final List<Component> listOfComponentColumns;
     protected boolean editorDataIsConfigured = true;
 
     public BaseAdminView(BaseAdminService<T, T2> baseAdminService, UtilsService utilsService) {
@@ -54,10 +55,10 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
         this.utilsService = utilsService;
 
         listOfGridColumns = getGridColumnsWithConverters();
-        listOfSelectColumns = getSelectColumns();
+        listOfComponentColumns = getComponentColumns();
 
         grid = new Grid<>(getEntityClass(), false);
-        addClassNames(getRoute() + "-view");
+        addClassNames(String.format("admin-%s-view", getRoute()));
         setHeightFull();
 
         SplitLayout splitLayout = new SplitLayout();
@@ -66,7 +67,7 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
         createGridLayout(splitLayout);
         if (editorDataIsConfigured) {
             createEditorLayout(splitLayout);
-            splitLayout.setSplitterPosition(60);
+            splitLayout.setSplitterPosition(80);
         } else {
             splitLayout.setSplitterPosition(100);
         }
@@ -100,7 +101,7 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
     protected abstract Class<? extends Div> getViewClass();
     protected abstract List<String> getGridColumnNames();
     protected abstract List<Pair<TextField, Optional<Converter>>> getGridColumnsWithConverters();
-    protected abstract List<Select<String>> getSelectColumns();
+    protected abstract List<Component> getComponentColumns();
     protected abstract Long getIdFromEntity(T sampleEntity);
     protected abstract String getRoute();
     protected abstract T getNewEntityObject();
@@ -135,7 +136,7 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
         for (Pair<TextField, Optional<Converter>> pair : listOfGridColumns) {
             formLayout.add(pair.getValue0());
         }
-        for (Select<String> select : listOfSelectColumns) {
+        for (Component select : listOfComponentColumns) {
             formLayout.add(select);
         }
 
@@ -167,7 +168,12 @@ public abstract class BaseAdminView<T, T2> extends Div implements BeforeEnterObs
                 binder.forField(field).withConverter(converter.get()).bind(field.getLabel());
             }
         });
-        listOfSelectColumns.forEach(stringSelect -> binder.forField(stringSelect).bind(stringSelect.getLabel()));
+        listOfComponentColumns.forEach(component -> {
+            if (component instanceof Select<?>) {
+                Select select = (Select) component;
+                binder.forField(select).bind(select.getLabel());
+            }
+        });
 
         cancel.addClickListener(e -> {
             clearForm();

@@ -5,6 +5,7 @@ import com.malanukha.market.dto.ProductDiscountDto;
 import com.malanukha.market.service.admin.ProductDiscountAdminService;
 import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
@@ -12,7 +13,6 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.converter.Converter;
 import com.vaadin.flow.data.converter.StringToBigDecimalConverter;
-import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
@@ -48,7 +48,6 @@ public class AdminProductDiscountsView extends BaseAdminView<ProductDiscountDto,
     @Override
     protected List<Pair<TextField, Optional<Converter>>> getGridColumnsWithConverters() {
         return List.of(
-                Pair.with(new TextField("id"), Optional.of(new StringToLongConverter("must be a long"))),
                 Pair.with(new TextField("name"), Optional.empty()),
                 Pair.with(new TextField("description"), Optional.empty()),
                 Pair.with(new TextField("discountPercent"), Optional.of(new StringToBigDecimalConverter("must be a BigDecimal")))
@@ -56,7 +55,7 @@ public class AdminProductDiscountsView extends BaseAdminView<ProductDiscountDto,
     }
 
     @Override
-    protected List<Select<String>> getSelectColumns() {
+    protected List<Component> getComponentColumns() {
         Select<String> active = new Select<>();
         active.setLabel("active");
         active.setItems("Yes", "No");

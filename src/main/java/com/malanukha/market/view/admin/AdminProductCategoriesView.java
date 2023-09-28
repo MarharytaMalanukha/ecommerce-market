@@ -5,13 +5,13 @@ import com.malanukha.market.dto.ProductCategoryDto;
 import com.malanukha.market.service.admin.BaseAdminService;
 import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.converter.Converter;
-import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
@@ -47,14 +47,13 @@ public class AdminProductCategoriesView extends BaseAdminView<ProductCategoryDto
     @Override
     protected List<Pair<TextField, Optional<Converter>>> getGridColumnsWithConverters() {
         return List.of(
-                Pair.with(new TextField("id"), Optional.of(new StringToLongConverter("must be a long"))),
                 Pair.with(new TextField("name"), Optional.empty()), //todo validation so name contains only numbers, letters and whitespace
                 Pair.with(new TextField("description"), Optional.empty())
         );
     }
 
     @Override
-    protected List<Select<String>> getSelectColumns() {
+    protected List<Component> getComponentColumns() {
         Select<String> mainCategoryName = new Select<>();
         mainCategoryName.setLabel("mainCategoryName");
         var mainCategories = utilsService.getMainProductCategories().stream()

@@ -5,10 +5,10 @@ import com.malanukha.market.dto.UserDto;
 import com.malanukha.market.service.admin.BaseAdminService;
 import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.converter.Converter;
 import com.vaadin.flow.router.PageTitle;
@@ -49,7 +49,7 @@ public class AdminUsersView extends BaseAdminView<UserDto, User> {
     }
 
     @Override
-    protected List<Select<String>> getSelectColumns() {
+    protected List<Component> getComponentColumns() {
         return List.of();
     }
 

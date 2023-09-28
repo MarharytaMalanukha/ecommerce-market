@@ -5,6 +5,7 @@ import com.malanukha.market.dto.ProductDto;
 import com.malanukha.market.service.admin.ProductAdminService;
 import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
@@ -13,7 +14,6 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.converter.Converter;
 import com.vaadin.flow.data.converter.StringToBigDecimalConverter;
 import com.vaadin.flow.data.converter.StringToIntegerConverter;
-import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
@@ -50,7 +50,6 @@ public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
     @Override
     protected List<Pair<TextField, Optional<Converter>>> getGridColumnsWithConverters() {
         return List.of(
-                Pair.with(new TextField("id"), Optional.of(new StringToLongConverter("must be a long"))),
                 Pair.with(new TextField("sku"), Optional.empty()),
                 Pair.with(new TextField("name"), Optional.empty()),
                 Pair.with(new TextField("description"), Optional.empty()),
@@ -60,7 +59,7 @@ public class AdminProductsView extends BaseAdminView<ProductDto, Product> {
     }
 
     @Override
-    protected List<Select<String>> getSelectColumns() {
+    protected List<Component> getComponentColumns() {
         List<String> categoriesNames = utilsService.getProductCategoryNames();
         List<String> discountsNames = utilsService.getProductDiscountNames();
         if (categoriesNames.isEmpty()) {

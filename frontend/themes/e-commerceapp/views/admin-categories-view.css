@@ -1,34 +1,34 @@
-.products-view {
+.admin-categories-view {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-.products-view vaadin-split-layout {
+.admin-categories-view vaadin-split-layout {
   width: 100%;
   height: 100%;
 }
 
-.products-view vaadin-grid {
+.admin-categories-view vaadin-grid {
   height: 100%;
 }
 
-.products-view .editor-layout {
+.admin-categories-view .editor-layout {
   display: flex;
   flex-direction: column;
   width: 400px;
 }
 
-.products-view .editor {
+.admin-categories-view .editor {
   flex-grow: 1;
   padding: var(--lumo-space-l);
 }
 
-.products-view .editor vaadin-checkbox {
+.admin-categories-view .editor vaadin-checkbox {
   padding-top: var(--lumo-space-m);
 }
 
-.products-view .button-layout {
+.admin-categories-view .button-layout {
   width: 100%;
   flex-wrap: wrap;
   background-color: var(--lumo-contrast-5pct);
@@ -39,6 +39,6 @@
   gap: var(--lumo-space-m);
 }
 
-.products-view .grid-wrapper {
+.admin-categories-view .grid-wrapper {
   width: 100%;
 }

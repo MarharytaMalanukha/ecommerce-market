@@ -9,6 +9,7 @@ import com.malanukha.market.dto.OrderDto;
 import com.malanukha.market.service.admin.OrderAdminService;
 import com.malanukha.market.service.utils.UtilsService;
 import com.malanukha.market.view.AdminLayout;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.icon.Icon;
@@ -16,7 +17,6 @@ import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.converter.Converter;
 import com.vaadin.flow.data.converter.StringToBigDecimalConverter;
-import com.vaadin.flow.data.converter.StringToLongConverter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
@@ -73,7 +73,6 @@ public class AdminOrdersView extends BaseAdminView<OrderDto, Order> {
         });
         //orderTotal.setReadOnly(true);todo
         return List.of(
-                Pair.with(new TextField("id"), Optional.of(new StringToLongConverter("must be a long"))),
                 Pair.with(username, Optional.empty()),
                 Pair.with(orderTotal, Optional.of(new StringToBigDecimalConverter("must be a BigDecimal"))),
                 Pair.with(new TextField("amountPayed"), Optional.of(new StringToBigDecimalConverter("must be a BigDecimal")))
@@ -81,7 +80,7 @@ public class AdminOrdersView extends BaseAdminView<OrderDto, Order> {
     }
 
     @Override
-    protected List<Select<String>> getSelectColumns() {
+    protected List<Component> getComponentColumns() {
         userAddress = new Select<>();
         userPayment = new Select<>();
         userAddress.setLabel("userAddress");
